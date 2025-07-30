@@ -32,6 +32,11 @@ EXPOSE 5000
 ENV FLASK_APP=app.py
 ENV FLASK_ENV=production
 ENV PYTHONUNBUFFERED=1
+ENV PORT=5000
 
-# 启动命令
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "4", "--timeout", "120", "app:app"]
+# 复制启动脚本
+COPY start.sh .
+RUN chmod +x start.sh
+
+# 启动命令 - 使用启动脚本确保端口配置正确
+CMD ["./start.sh"]
