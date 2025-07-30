@@ -114,6 +114,14 @@ def init_database():
     except Exception as e:
         print(f"数据库初始化失败: {e}")
         print("请检查MySQL服务是否启动，以及数据库配置是否正确")
+        # 在生产环境中，我们不希望因为数据库连接失败而阻止应用启动
+        return False
+    return True
+
+@app.route('/health')
+def health_check():
+    """健康检查端点"""
+    return {'status': 'ok', 'message': '应用正常运行'}, 200
 
 @app.route('/')
 def index():
@@ -430,12 +438,19 @@ def get_results(report_id):
         return jsonify({'error': f'获取结果失败: {e}'}), 500
 
 if __name__ == '__main__':
-    # 初始化数据库
-    init_database()
+    # 尝试初始化数据库，但不让失败阻止应用启动
+    try:
+        db_initialized = init_database()
+        if not db_initialized:
+            print("警告：数据库初始化失败，应用将在有限功能模式下运行")
+    except Exception as e:
+        print(f"数据库初始化遇到异常: {e}")
+        print("应用将在有限功能模式下运行")
     
     # 启动应用 - 支持环境变量配置
     debug_mode = os.getenv('FLASK_DEBUG', 'False').lower() == 'true'
     port = int(os.getenv('PORT', '5000'))
     host = os.getenv('HOST', '0.0.0.0')
     
+    print(f"启动应用在 {host}:{port}")
     app.run(debug=debug_mode, host=host, port=port)
