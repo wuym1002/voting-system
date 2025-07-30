@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>汇报评分投票系统 - 功能演示</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --success-color: #198754;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --info-color: #0dcaf0;
+            --light-bg: #f8f9fa;
+            --border-radius: 12px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+        
+        .demo-container {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--info-color));
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .feature-card {
+            border: none;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 24px;
+        }
+        
+        .deployment-steps {
+            background: var(--light-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        
+        .tech-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            margin: 5px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .screenshot-placeholder {
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            text-align: center;
+            color: #666;
+            border: 2px dashed #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-12 col-xl-10">
+                <div class="demo-container">
+                    <!-- 头部介绍 -->
+                    <div class="hero-section">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-8 mx-auto">
+                                    <h1 class="display-4 fw-bold mb-4">
+                                        🗳️ 汇报评分投票系统
+                                    </h1>
+                                    <p class="lead mb-4">
+                                        企业级汇报评分管理平台，支持多评委在线投票、权限控制、实时统计
+                                    </p>
+                                    <div class="d-flex justify-content-center gap-3 flex-wrap">
+                                        <span class="tech-badge bg-light text-dark">
+                                            <i class="bi bi-code-slash me-2"></i>Flask + MySQL
+                                        </span>
+                                        <span class="tech-badge bg-light text-dark">
+                                            <i class="bi bi-shield-check me-2"></i>权限控制
+                                        </span>
+                                        <span class="tech-badge bg-light text-dark">
+                                            <i class="bi bi-phone me-2"></i>响应式设计
+                                        </span>
+                                        <span class="tech-badge bg-light text-dark">
+                                            <i class="bi bi-cloud me-2"></i>云端部署
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 主要功能 -->
+                    <div class="container py-5">
+                        <div class="row mb-5">
+                            <div class="col-12 text-center">
+                                <h2 class="fw-bold mb-4">🚀 核心功能特性</h2>
+                                <p class="text-muted">完整的投票管理解决方案</p>
+                            </div>
+                        </div>
+                        
+                        <div class="row g-4 mb-5">
+                            <div class="col-md-4">
+                                <div class="card feature-card">
+                                    <div class="card-body text-center p-4">
+                                        <div class="feature-icon bg-primary bg-opacity-10 text-primary">
+                                            <i class="bi bi-plus-circle-fill"></i>
+                                        </div>
+                                        <h5 class="fw-bold">创建汇报投票</h5>
+                                        <p class="text-muted">管理员可以创建汇报项目，设置投票内容和截止时间</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card feature-card">
+                                    <div class="card-body text-center p-4">
+                                        <div class="feature-icon bg-success bg-opacity-10 text-success">
+                                            <i class="bi bi-hand-thumbs-up-fill"></i>
+                                        </div>
+                                        <h5 class="fw-bold">在线投票评分</h5>
+                                        <p class="text-muted">评委在线投票，支持-3到+3评分和详细评价</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card feature-card">
+                                    <div class="card-body text-center p-4">
+                                        <div class="feature-icon bg-warning bg-opacity-10 text-warning">
+                                            <i class="bi bi-shield-lock-fill"></i>
+                                        </div>
+                                        <h5 class="fw-bold">权限控制</h5>
+                                        <p class="text-muted">创建者查看全部，评委只看自己，保护投票隐私</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-4 mb-5">
+                            <div class="col-md-4">
+                                <div class="card feature-card">
+                                    <div class="card-body text-center p-4">
+                                        <div class="feature-icon bg-info bg-opacity-10 text-info">
+                                            <i class="bi bi-graph-up"></i>
+                                        </div>
+                                        <h5 class="fw-bold">实时统计</h5>
+                                        <p class="text-muted">自动计算加权平均分，实时显示投票进度</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card feature-card">
+                                    <div class="card-body text-center p-4">
+                                        <div class="feature-icon bg-danger bg-opacity-10 text-danger">
+                                            <i class="bi bi-people-fill"></i>
+                                        </div>
+                                        <h5 class="fw-bold">多用户支持</h5>
+                                        <p class="text-muted">支持多个评委同时在线投票，无并发冲突</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card feature-card">
+                                    <div class="card-body text-center p-4">
+                                        <div class="feature-icon bg-secondary bg-opacity-10 text-secondary">
+                                            <i class="bi bi-phone"></i>
+                                        </div>
+                                        <h5 class="fw-bold">响应式设计</h5>
+                                        <p class="text-muted">完美适配手机、平板、电脑等各种设备</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 部署步骤 -->
+                        <div class="row mb-5">
+                            <div class="col-12">
+                                <div class="deployment-steps">
+                                    <h3 class="fw-bold mb-4 text-center">
+                                        <i class="bi bi-rocket-takeoff me-2"></i>
+                                        5分钟快速部署上线
+                                    </h3>
+                                    
+                                    <div class="row g-4">
+                                        <div class="col-md-6">
+                                            <div class="d-flex align-items-start">
+                                                <div class="step-number">1</div>
+                                                <div>
+                                                    <h6 class="fw-bold">上传到GitHub</h6>
+                                                    <p class="text-muted mb-0">创建GitHub仓库，上传项目代码</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="d-flex align-items-start">
+                                                <div class="step-number">2</div>
+                                                <div>
+                                                    <h6 class="fw-bold">Railway部署</h6>
+                                                    <p class="text-muted mb-0">连接GitHub，一键部署到云端</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="d-flex align-items-start">
+                                                <div class="step-number">3</div>
+                                                <div>
+                                                    <h6 class="fw-bold">添加数据库</h6>
+                                                    <p class="text-muted mb-0">自动配置MySQL数据库服务</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="d-flex align-items-start">
+                                                <div class="step-number">4</div>
+                                                <div>
+                                                    <h6 class="fw-bold">获取访问链接</h6>
+                                                    <p class="text-muted mb-0">获得全球可访问的HTTPS链接</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 技术架构 -->
+                        <div class="row mb-5">
+                            <div class="col-12 text-center">
+                                <h3 class="fw-bold mb-4">
+                                    <i class="bi bi-gear-fill me-2"></i>
+                                    技术架构
+                                </h3>
+                            </div>
+                            <div class="col-md-8 mx-auto">
+                                <div class="card">
+                                    <div class="card-body p-4">
+                                        <div class="row text-center">
+                                            <div class="col-6 col-md-3 mb-3">
+                                                <i class="bi bi-code-slash display-6 text-primary"></i>
+                                                <h6 class="mt-2">Flask</h6>
+                                                <small class="text-muted">Python Web框架</small>
+                                            </div>
+                                            <div class="col-6 col-md-3 mb-3">
+                                                <i class="bi bi-database-fill display-6 text-success"></i>
+                                                <h6 class="mt-2">MySQL</h6>
+                                                <small class="text-muted">关系型数据库</small>
+                                            </div>
+                                            <div class="col-6 col-md-3 mb-3">
+                                                <i class="bi bi-bootstrap-fill display-6 text-info"></i>
+                                                <h6 class="mt-2">Bootstrap</h6>
+                                                <small class="text-muted">响应式UI框架</small>
+                                            </div>
+                                            <div class="col-6 col-md-3 mb-3">
+                                                <i class="bi bi-cloud-fill display-6 text-warning"></i>
+                                                <h6 class="mt-2">Railway</h6>
+                                                <small class="text-muted">云端部署平台</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 立即开始 -->
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <div class="card bg-primary text-white">
+                                    <div class="card-body p-5">
+                                        <h3 class="fw-bold mb-3">🎉 立即开始部署</h3>
+                                        <p class="lead mb-4">您的汇报评分投票系统已经准备就绪！</p>
+                                        
+                                        <div class="d-flex justify-content-center gap-3 flex-wrap">
+                                            <div class="btn-group" role="group">
+                                                <button type="button" class="btn btn-light btn-lg pulse" onclick="showDeploymentGuide()">
+                                                    <i class="bi bi-rocket-takeoff me-2"></i>
+                                                    开始部署
+                                                </button>
+                                                <button type="button" class="btn btn-outline-light btn-lg" onclick="showTechnicalDetails()">
+                                                    <i class="bi bi-file-text me-2"></i>
+                                                    查看文档
+                                                </button>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="mt-4">
+                                            <small class="opacity-75">
+                                                <i class="bi bi-shield-check me-1"></i>
+                                                完全免费开始使用 • 
+                                                <i class="bi bi-lightning me-1"></i>
+                                                5分钟即可上线 • 
+                                                <i class="bi bi-globe me-1"></i>
+                                                全球可访问
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 模态框 - 部署指南 -->
+    <div class="modal fade" id="deploymentModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="bi bi-rocket-takeoff me-2"></i>
+                        快速部署指南
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-info">
+                        <i class="bi bi-info-circle me-2"></i>
+                        <strong>准备工作：</strong>确保您有GitHub账号，如没有请先注册
+                    </div>
+                    
+                    <h6 class="fw-bold">第一步：上传代码到GitHub</h6>
+                    <ol>
+                        <li>在GitHub创建新仓库：<code>voting-system</code></li>
+                        <li>在项目目录执行：
+                            <pre class="bg-light p-2 rounded"><code>./upload_to_github.sh</code></pre>
+                        </li>
+                    </ol>
+                    
+                    <h6 class="fw-bold">第二步：Railway部署</h6>
+                    <ol>
+                        <li>访问 <a href="https://railway.app" target="_blank">railway.app</a></li>
+                        <li>使用GitHub登录</li>
+                        <li>点击 "New Project" → "Deploy from GitHub repo"</li>
+                        <li>选择 <code>voting-system</code> 仓库</li>
+                    </ol>
+                    
+                    <h6 class="fw-bold">第三步：添加数据库</h6>
+                    <ol>
+                        <li>在项目页面点击 "Add Service"</li>
+                        <li>选择 "Database" → "MySQL"</li>
+                        <li>等待数据库创建完成</li>
+                    </ol>
+                    
+                    <div class="alert alert-success">
+                        <i class="bi bi-check-circle me-2"></i>
+                        <strong>完成！</strong>您会获得一个全球可访问的HTTPS链接
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                    <a href="https://railway.app" target="_blank" class="btn btn-primary">
+                        <i class="bi bi-box-arrow-up-right me-2"></i>
+                        前往Railway
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 模态框 - 技术详情 -->
+    <div class="modal fade" id="technicalModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="bi bi-file-text me-2"></i>
+                        技术文档
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <h6 class="fw-bold">项目文件结构</h6>
+                    <pre class="bg-light p-3 rounded"><code>voting-system/
+├── app.py                 # Flask主应用
+├── templates/             # HTML模板
+├── requirements.txt       # Python依赖
+├── Dockerfile            # Docker配置
+├── railway.json          # Railway部署配置
+├── database_schema.sql   # 数据库结构
+└── 部署说明文档.md       # 详细文档</code></pre>
+                    
+                    <h6 class="fw-bold">核心功能模块</h6>
+                    <ul>
+                        <li><strong>用户管理：</strong>创建者权限验证</li>
+                        <li><strong>投票系统：</strong>评分提交和统计</li>
+                        <li><strong>权限控制：</strong>分级访问权限</li>
+                        <li><strong>数据统计：</strong>实时加权平均计算</li>
+                    </ul>
+                    
+                    <h6 class="fw-bold">安全特性</h6>
+                    <ul>
+                        <li>HTTPS加密传输</li>
+                        <li>投票隐私保护</li>
+                        <li>SQL注入防护</li>
+                        <li>会话管理</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function showDeploymentGuide() {
+            new bootstrap.Modal(document.getElementById('deploymentModal')).show();
+        }
+        
+        function showTechnicalDetails() {
+            new bootstrap.Modal(document.getElementById('technicalModal')).show();
+        }
+        
+        // 添加一些交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 为特性卡片添加点击效果
+            document.querySelectorAll('.feature-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
