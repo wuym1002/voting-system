@@ -2,7 +2,13 @@
 import os
 
 # 服务器绑定
-bind = f"0.0.0.0:{os.getenv('PORT', '5000')}"
+port = os.getenv('PORT', '5000')
+# 确保端口是有效的数字
+try:
+    port = int(port)
+except (ValueError, TypeError):
+    port = 5000
+bind = f"0.0.0.0:{port}"
 
 # 工作进程数
 workers = int(os.getenv('WEB_CONCURRENCY', '4'))

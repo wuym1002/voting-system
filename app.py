@@ -449,8 +449,15 @@ if __name__ == '__main__':
     
     # 启动应用 - 支持环境变量配置
     debug_mode = os.getenv('FLASK_DEBUG', 'False').lower() == 'true'
-    port = int(os.getenv('PORT', '5000'))
+    
+    # 安全地解析端口号
+    try:
+        port = int(os.getenv('PORT', '5000'))
+    except (ValueError, TypeError):
+        port = 5000
+        
     host = os.getenv('HOST', '0.0.0.0')
     
     print(f"启动应用在 {host}:{port}")
+    print(f"调试模式: {debug_mode}")
     app.run(debug=debug_mode, host=host, port=port)
