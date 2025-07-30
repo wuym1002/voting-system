@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block title %}查询投票记录 - 汇报评分投票系统{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h4><i class="bi bi-search"></i> 查询个人投票记录</h4>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="judge_name" class="form-label">评委姓名 <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="judge_name" name="judge_name" 
+                               value="{{ judge_name or '' }}" required
+                               placeholder="请输入您的姓名">
+                        <div class="form-text">输入您的姓名查看所有投票记录</div>
+                    </div>
+                    
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{{ url_for('index') }}" class="btn btn-secondary me-md-2">
+                            <i class="bi bi-arrow-left"></i> 返回首页
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-search"></i> 查询记录
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        {% if votes %}
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5><i class="bi bi-person-check"></i> {{ judge_name }} 的投票记录</h5>
+                <small class="text-muted">共 {{ votes|length }} 条记录</small>
+            </div>
+            <div class="card-body">
+                {% for vote in votes %}
+                <div class="card mb-3 border-left-primary">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h6 class="card-title">{{ vote.title }}</h6>
+                                <p class="text-muted mb-1">
+                                    <i class="bi bi-person"></i> 汇报人：{{ vote.creator }} &nbsp;&nbsp;
+                                    <i class="bi bi-calendar"></i> 汇报创建：{{ vote.report_created_at.strftime('%Y-%m-%d') }}
+                                </p>
+                                <p class="mb-2">
+                                    <strong>您的评价：</strong>
+                                    {{ vote.comment or '无评价' }}
+                                </p>
+                                <small class="text-muted">
+                                    <i class="bi bi-clock"></i> 投票时间：{{ vote.created_at.strftime('%Y-%m-%d %H:%M') }}
+                                </small>
+                            </div>
+                            <div class="col-md-4 text-end">
+                                <div class="mb-2">
+                                    <strong>您的评分：</strong>
+                                    {% if vote.score > 0 %}
+                                        <span class="badge bg-success fs-6">+{{ vote.score }}分</span>
+                                    {% elif vote.score < 0 %}
+                                        <span class="badge bg-danger fs-6">{{ vote.score }}分</span>
+                                    {% else %}
+                                        <span class="badge bg-secondary fs-6">{{ vote.score }}分</span>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    <a href="{{ url_for('report_detail', report_id=vote.report_id, judge_name=judge_name) }}" 
+                                       class="btn btn-outline-primary btn-sm">
+                                        <i class="bi bi-eye"></i> 查看详情
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+                <div class="alert alert-info">
+                    <h6><i class="bi bi-info-circle"></i> 说明：</h6>
+                    <ul class="mb-0">
+                        <li>以上是您参与投票的所有汇报记录</li>
+                        <li>点击"查看详情"可以查看该汇报的完整统计信息</li>
+                        <li>您只能看到自己的投票记录，无法看到其他评委的投票</li>
+                        <li>如需修改投票，请联系系统管理员</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}创建汇报投票 - 汇报评分投票系统{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h4><i class="bi bi-plus-circle"></i> 创建新的汇报投票</h4>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">汇报标题 <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="title" name="title" required 
+                               placeholder="请输入汇报标题">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="description" class="form-label">汇报内容描述</label>
+                        <textarea class="form-control" id="description" name="description" rows="4"
+                                  placeholder="请详细描述汇报内容，包括架构要点、技术方案等"></textarea>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="creator" class="form-label">创建者姓名 <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="creator" name="creator" required
+                               placeholder="请输入您的姓名">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="deadline" class="form-label">投票截止时间（可选）</label>
+                        <input type="datetime-local" class="form-control" id="deadline" name="deadline">
+                        <div class="form-text">如不设置，投票将一直开放直到手动关闭</div>
+                    </div>
+                    
+                    <div class="alert alert-info">
+                        <h6><i class="bi bi-info-circle"></i> 评分规则说明：</h6>
+                        <ul class="mb-0">
+                            <li>基础分：5分（固定）</li>
+                            <li>评委评分：-3分到+3分</li>
+                            <li>最终得分：基础分 + 平均加权评分</li>
+                            <li>评委可以提供评价意见</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{{ url_for('index') }}" class="btn btn-secondary me-md-2">
+                            <i class="bi bi-arrow-left"></i> 返回
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-check-circle"></i> 创建投票
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
